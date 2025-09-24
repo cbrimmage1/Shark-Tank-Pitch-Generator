@@ -54,6 +54,11 @@ h1, h2, h3 {
     padding-left: 1rem;
 }
 
+.scroll__down__text {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
 #scroll__page {
     background-color: transparent;
     border: none;
