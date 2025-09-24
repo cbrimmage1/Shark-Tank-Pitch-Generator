@@ -36,5 +36,19 @@ window.addEventListener('load', function () {
     })
 
 
+    // ~ SCROLL PAGE ~ //
+    // grab scroll icon
+    let scrollPage = document.getElementById('scroll__page');
+
+    // grab 'main' page
+    let scrollHere = document.getElementById('main');
+
+    // when icon is clicked, scroll to 'main' page
+    scrollPage.addEventListener("click", function() {
+        scrollHere.scrollIntoView({
+            behavior: "smooth",
+            block: "end"
+        })
+    })
 
 })

@@ -16,6 +16,7 @@ p {
     font-weight: 200;
 }
 
+/* Landing Section Styling */
 
 .landing {
     display: flex;
@@ -53,9 +54,21 @@ h1, h2, h3 {
     padding-left: 1rem;
 }
 
+#scroll__page {
+    background-color: transparent;
+    border: none;
+}
+
+
 .fa-solid {
     color: white;
 }
+
+.fa-solid:hover {
+    color: black;
+}
+
+/* Main Section Styling */
 
 .main {
     display: flex;
