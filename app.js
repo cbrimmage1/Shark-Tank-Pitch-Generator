@@ -4,16 +4,16 @@ window.addEventListener('load', function () {
 
     // ~ GENERATE A PITCH ~ //
 
-    // grab generate button html
+    // grab 'generate' button html
     let button = document.getElementById('generate__button');
 
-    // add click event to button
+    // add click event to 'generate' button
     button.addEventListener("click", function () {
         // testing button works
         console.log("button was clicked");
 
         // ~ FETCH API ~ //
-        // when button is clicked, reponse is sought out from API
+        // when 'generate' button is clicked, reponse is sought out from API
         fetch("https://corsproxy.io/?https://itsthisforthat.com/api.php?json")
             .then(response => response.json())
             .then(data => {
