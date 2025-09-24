@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: blue;
+}
+
+@font-face {
+    font-family: sharkFont;
+    src: url(kenyan\ coffee\ rg.ttf)
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.2rem;
+}
+
+
+.landing {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1, h2, h3 {
+    font-family: sharkFont;
+    color: white;
+}
+
+.shark__header {
+    font-size: 12rem;
+    text-align: center;
+    margin: -3rem 0;
+    padding: 0;
+}
+
+.tank__header {
+    font-size: 15rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.pitch__generator__header {
+    font-size: 4.7rem;
+    font-weight: 100;
+    text-align: center;
+    margin-top: -2rem;
+    padding-left: 1rem;
+}
+
+.fa-solid {
+    color: white;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.main__left {
+    width: 49%;
+    height: 75%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.main__left__header {
+    font-size: 4rem;
+    margin: 0;
+    text-align: left;
+}
+
+#displayed__pitch {
+    visibility: hidden;
+    align-content: center;
+    margin-top: 30%;
+}
+
+
+.main__right {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 75%;
+    background-color: darkblue;
+    border-radius: 30px;
+
+}
+
+.main__right__header {
+    font-size: 3rem;
+    margin: 0;
+}
+
+
+.main__right__text {
+    width: 75%;
+}
+
+#generate__button {
+    width: 33%;
+    background-color: white;
+    border: solid;
+    border-color: white;
+    border-radius: 30px;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* font-size: 20px; */
+    margin: 0 auto;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#generate__button:hover {
+    background-color: black; 
+    color: white;
+}
