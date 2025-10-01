@@ -20,6 +20,7 @@
   "homepage": "https://github.com/cbrimmage1/Shark-Tank-Pitch-Generator#readme",
   "dependencies": {
     "three": "^0.180.0",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "vite-plugin-glsl": "^1.5.2"
   }
 }
