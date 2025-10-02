@@ -14,7 +14,6 @@ window.addEventListener('load', function () {
 
     // gltf loader (load 3d models in)
     let mixer = null;
-    let shark = null;
     let gltfLoader = new GLTFLoader();
     gltfLoader.load(
         '/models/swimming_shark/scene.gltf',
@@ -26,7 +25,7 @@ window.addEventListener('load', function () {
         console.log(gltf);
 
         // shark
-        shark = gltf.scene;
+       let shark = gltf.scene;
 
 
         // update mixer variable
@@ -35,7 +34,7 @@ window.addEventListener('load', function () {
         action.play();
 
         // set shark scale & position
-        shark.scale.set(0.25, 0.25, 0.25);
+        shark.scale.set(0.30, 0.30, 0.30);
         shark.position.set(-1, -1.5, -0.5);
         scene.add(shark);
 
@@ -203,9 +202,10 @@ window.addEventListener('load', function () {
     // water mesh
     let water = new THREE.Mesh(waterGeometry,waterMaterial);
 
-    // invert shader
+    // invert water plane
     water.rotation.x = 2;
     water.position.y = 0.5;
+    // add water mesh to scene
     scene.add(water);
 
 
@@ -233,8 +233,9 @@ window.addEventListener('load', function () {
 
     // camera
     let camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
-    // move camera backwards
+    // move camera backwards (to avoid mesg collisions)
     camera.position.z = 3.5;
+    // add camera to scene
     scene.add(camera);
 
     // renderer
@@ -246,6 +247,7 @@ window.addEventListener('load', function () {
 
 
     /// ~ ANIMATE THREE.JS ELEMENTS ~ //
+    
     // clock
     let clock = new THREE.Clock();
 
@@ -264,13 +266,6 @@ window.addEventListener('load', function () {
         // update gltf animation mixer (only update when mixer is not null)
         if(mixer !== null) {
         mixer.update(deltaTime * 1.25);
-
-        // swim
-        // if(shark !== null) {
-        //     shark.position.x = Math.sin(elapsedTime);
-        //     shark.position.z = Math.cos(elapsedTime);
-        //     shark.rotation.y += 0.01;
-        // }
 
        }
 
@@ -307,10 +302,10 @@ window.addEventListener('load', function () {
                 // see the retrieved data in console
                 console.log(data);
 
-                // // grab HTML element where pitch will be displayed on screen
+                // grab HTML element where pitch will be displayed on screen
                 let displayedPitch = document.getElementById('displayed__pitch');
 
-                // update it's text content with API data
+                // update its text content with API data
                 displayedPitch.textContent = `${data.this}` + " for " + `${data.that}`;
 
                 // show the text on screen
@@ -351,7 +346,7 @@ window.addEventListener('load', function () {
             block: "end"
         })
 
-        // move water position
+        // move water position & camera
         water.position.y = 2.50;
         water.rotation.x = -2;
         camera.position.z = 4;
@@ -365,7 +360,7 @@ window.addEventListener('load', function () {
             block: "start"
         })
 
-        // reset water position
+        // reset water position & camera
         water.position.y = 0;
         water.rotation.x = 2;
         camera.position.z = 3.5;
