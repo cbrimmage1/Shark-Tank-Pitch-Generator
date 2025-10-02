@@ -291,8 +291,6 @@ window.addEventListener('load', function () {
 
     // add click event to 'generate' button
     button.addEventListener("click", function () {
-        // testing button works
-        console.log("button was clicked");
 
         // ~ FETCH API ~ //
         // when 'generate' button is clicked, reponse is sought out from API
