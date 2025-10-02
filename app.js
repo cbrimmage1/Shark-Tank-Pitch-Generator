@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
     let mixer = null;
     let gltfLoader = new GLTFLoader();
     gltfLoader.load(
-        'static/models/swimming_shark/scene.gltf',
+        '/models/swimming_shark/scene.gltf',
         function (gltf)
     {
         console.log('model load successful');
