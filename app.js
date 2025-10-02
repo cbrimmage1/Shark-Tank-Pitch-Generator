@@ -1,8 +1,9 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 window.addEventListener('load', function () {
     console.log('page is loaded');
-
+    
     // ~ LOAD THREE.JS ELEMENTS ~ //
 
     // canvas
@@ -11,33 +12,38 @@ window.addEventListener('load', function () {
     // scene
     let scene = new THREE.Scene();
 
+    // gltf loader (load 3d models in)
+    let mixer = null;
+    let shark = null;
+    let gltfLoader = new GLTFLoader();
+    gltfLoader.load(
+        '/models/swimming_shark/scene.gltf',
+        function (gltf)
+    {
+        console.log('model load successful');
+
+        // check model properties
+        console.log(gltf);
+
+        // shark
+        shark = gltf.scene;
+
+
+        // update mixer variable
+        mixer = new THREE.AnimationMixer(shark);
+        let action = mixer.clipAction(gltf.animations[1]);
+        action.play();
+
+        // set shark scale & position
+        shark.scale.set(0.25, 0.25, 0.25);
+        shark.position.set(-1, -1.5, -0.5);
+        scene.add(shark);
+
+    }
+    )
+
     // water debug color objects
     let debugObject = {};
-
-    // test geometry & material
-    let geometry = new THREE.BoxGeometry(1, 1, 1);
-    let material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-
-    // test mesh 1
-    let mesh1 = new THREE.Mesh(geometry,material);
-    mesh1.position.set(0, 0.5, -2)
-
-    // test mesh 2
-    let mesh2 = new THREE.Mesh(geometry,material);
-    mesh2.position.set(-2.6, -1, -0.15);
-
-    // test mesh 3
-    let mesh3 = new THREE.Mesh(geometry,material);
-    mesh3.position.set(2, -1, -0.15)
-
-    // create object group to animate in tandem
-    let group = new THREE.Group();
-    group.add(mesh1);
-    group.add(mesh2);
-    group.add(mesh3);
-
-    // add mesh group to three.js scene
-    scene.add(group);
 
     // ~ CREATE WATER ~ //
     // water geometry
@@ -196,7 +202,10 @@ window.addEventListener('load', function () {
 
     // water mesh
     let water = new THREE.Mesh(waterGeometry,waterMaterial);
-    water.rotation.x = -1;
+
+    // invert shader
+    water.rotation.x = 2;
+    water.position.y = 0.5;
     scene.add(water);
 
 
@@ -240,17 +249,33 @@ window.addEventListener('load', function () {
     // clock
     let clock = new THREE.Clock();
 
+    // previous time
+    let previousTime = 0;
+
     function tick () {
        
         // get elapsed time
         let elapsedTime = clock.getElapsedTime();
 
+        // get delta time
+        let deltaTime = elapsedTime - previousTime;
+        previousTime = elapsedTime;
+
+        // update gltf animation mixer (only update when mixer is not null)
+        if(mixer !== null) {
+        mixer.update(deltaTime * 1.25);
+
+        // swim
+        // if(shark !== null) {
+        //     shark.position.x = Math.sin(elapsedTime);
+        //     shark.position.z = Math.cos(elapsedTime);
+        //     shark.rotation.y += 0.01;
+        // }
+
+       }
+
         // update water
         waterMaterial.uniforms.uTime.value = elapsedTime;
-
-        // update box position (move in circle)
-        group.position.x = Math.sin(elapsedTime) * 2;
-        group.position.z = Math.cos(elapsedTime);
 
          // call renderer
         renderer.render(scene, camera);
@@ -325,6 +350,12 @@ window.addEventListener('load', function () {
             behavior: "smooth",
             block: "end"
         })
+
+        // move water position
+        water.position.y = 2.50;
+        water.rotation.x = -2;
+        camera.position.z = 4;
+
     })
 
     // when up is clicked, scroll to 'landing' page
@@ -333,6 +364,12 @@ window.addEventListener('load', function () {
             behavior: "smooth",
             block: "start"
         })
+
+        // reset water position
+        water.position.y = 0;
+        water.rotation.x = 2;
+        camera.position.z = 3.5;
+
     })
 
 })
