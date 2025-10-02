@@ -18,7 +18,7 @@ body {
 
 @font-face {
     font-family: sharkFont;
-    src: url('./kenyan\ coffee\ rg.ttf');
+    src: url('/kenyan\ coffee\ rg.ttf');
 }
 
 p {
